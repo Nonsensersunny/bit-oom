@@ -1,0 +1,36 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form
+                enctype="multipart/form-data"
+                action="http://localhost:8080/upload"
+                method="post"
+        >
+            <input type="file" name="myFile" />
+            <input type="submit" value="upload" />
+        </form>
+
+        <table>
+            <th>Files Uploaded</th>
+            <tr>
+                <th>Name</th>
+                <th>Mod Time</th>
+                <th>Size(byte)</th>
+                <th>Download</th>
+            </tr>
+            {{ range .Objs }}
+                <tr>
+                        <td>{{ .Name }}</td>
+                        <td>{{ .ModTime }}</td>
+                        <td> {{ .Size }}</td>
+                        <td><a href="http://localhost:8080/download?file={{ .RealName }}">Link</a></td>
+                </tr>
+            {{ end }}
+        </table>
+    </body>
+</html>
